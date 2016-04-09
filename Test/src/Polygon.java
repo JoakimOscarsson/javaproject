@@ -20,6 +20,10 @@ public class Polygon implements Drawable {
 		System.out.println(this.x);
 	}
 	
+	public void update(){
+		
+	}
+	
 	public Polygon(int x, int y, int r) {
 		this.x = x;
 		this.y = y;

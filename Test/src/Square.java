@@ -22,6 +22,10 @@ public class Square implements Drawable {
 		this.color = Color.RED;
 	}
 	
+	public void update(){
+		
+	}
+	
 	public Square(int x, int y, int r, Color color) {
 		this.x = x;
 		this.y = y;
