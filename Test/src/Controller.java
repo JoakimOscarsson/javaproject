@@ -65,8 +65,8 @@ public class Controller implements MouseListener, MouseMotionListener, ActionLis
 	}
 	
 	public void mouseDragged(MouseEvent e) {
-		addRandomThing(e);
-		view.repaint();
+		//addRandomThing(e);
+		//view.repaint();
 		//System.out.println("bahs");
 	}
 	

@@ -3,7 +3,8 @@ import java.awt.Graphics;
 import java.util.Random;
 
 public class Star implements Drawable {
-	int x, y, r;
+	int x, y, r, rmax;
+	boolean growing;
 	Color color;
 	
 	public Star(int x, int y, int r) {
@@ -20,10 +21,23 @@ public class Star implements Drawable {
 		this.y = y;
 		this.r = r;
 		this.color = color;
+		this.rmax = r;
+		this.growing = false;
 	}
 	
 	public void update(){
-		
+		if (this.growing == true) {
+			this.r = this.r + 5;
+			if (this.r >= this.rmax - 10) {
+				this.growing = false;
+			}
+		}
+		else if (this.growing == false) {
+			this.r = this.r - 5;
+			if (this.r <= 5) {
+				this.growing = true;
+			}
+		}
 	}
 	
 	public void setX(int x){

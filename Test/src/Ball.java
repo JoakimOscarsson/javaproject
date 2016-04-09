@@ -17,6 +17,7 @@ public class Ball implements Drawable {
 		
 		System.out.println(this.x);
 	}
+	
 	public void update(){
 		this.x += (int)(this.speed * Math.cos(this.theta));
 		this.y += (int)(this.speed * Math.sin(this.theta));

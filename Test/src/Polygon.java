@@ -21,7 +21,9 @@ public class Polygon implements Drawable {
 	}
 	
 	public void update(){
+		Random rand = new Random();
 		
+		this.color = new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255));
 	}
 	
 	public Polygon(int x, int y, int r) {
