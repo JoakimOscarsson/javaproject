@@ -1,9 +1,22 @@
 import java.util.ArrayList;
 import java.util.Random;
-import java.awt.Color;
 
-public class Model {
+import javax.swing.Timer;
+
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Model  implements ActionListener {
+	Timer modelRefreshRate;
 	ArrayList<Drawable> things = new ArrayList<Drawable>();
+	
+	public Model(){
+		//Timers:
+		this.modelRefreshRate = new Timer(10,this);
+		this.modelRefreshRate.start();
+	}
+	
 	
 	public ArrayList<Drawable> getThings() {
 		return things;
@@ -12,6 +25,7 @@ public class Model {
 	public void addThings(Drawable thing) {
 		things.add(thing);
 	}
+
 
 	public void addRandomThing(int x, int y) {
 		Random rand = new Random();
@@ -48,6 +62,15 @@ public class Model {
 	
 	public void clearList() {
 		this.things.clear();
+	}
+	
+
+	
+	
+	public void actionPerformed(ActionEvent e){
+		for(Drawable i:this.things) {
+			i.update();
+		}
 	}
 }
 

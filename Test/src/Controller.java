@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.text.StyledEditorKit.ForegroundAction;
 
-public class Controller implements MouseListener, MouseMotionListener, ActionListener {
+public class Controller implements MouseListener, MouseMotionListener{
 	Model model;
 	View view;
 	Timer screenRefreshRate;
@@ -17,9 +17,7 @@ public class Controller implements MouseListener, MouseMotionListener, ActionLis
 		view.addMouseListener(this);
 		view.addMouseMotionListener(this);
 		
-		//Timers:
-		screenRefreshRate = new Timer(10,this);
-		screenRefreshRate.start();
+
 	}
 	
 	
@@ -69,13 +67,6 @@ public class Controller implements MouseListener, MouseMotionListener, ActionLis
 		//view.repaint();
 		//System.out.println("bahs");
 	}
-	
-	public void actionPerformed(ActionEvent e){
-		ArrayList<Drawable> objs = this.model.getThings();
-		for(Drawable i:objs) {
-			i.update();
-		}
-		this.view.repaint();
-	}
+
 }
 
