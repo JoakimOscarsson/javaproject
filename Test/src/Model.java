@@ -33,7 +33,7 @@ public class Model  implements ActionListener {
 		
 		//int shape = rand.nextInt(4);
 		int shape = rand.nextInt(3);
-		int size = 30 + rand.nextInt(470);
+		int size = 30 + rand.nextInt(170);
 		int R = rand.nextInt(255);
 		int G = rand.nextInt(255);
 		int B = rand.nextInt(255);

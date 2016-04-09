@@ -39,7 +39,7 @@ public class Ball implements Drawable {
 		this.color = color;
 
 		this.theta = Math.toRadians(rand.nextInt(359)) + 1;
-		this.speed = Math.abs((500 - this.r) / 60) + 2;
+		this.speed = Math.abs((200 - this.r) / 60) + 2;
 
 	}
 	
