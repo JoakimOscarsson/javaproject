@@ -7,9 +7,9 @@ public class MainPanel extends JPanel {
 	
 	public MainPanel() {
 		setBackground(Color.BLACK);
-		things.add(new Boll(100, 100, 50));
-		things.add(new Boll(100, 300, 10));
-		things.add(new Boll(400, 600, 100));
+		things.add(new Ball(100, 100, 50));
+		things.add(new Ball(100, 300, 10));
+		things.add(new Ball(400, 600, 100));
 		things.add(new Star(300, 300, 50));
 		things.add(new Star(200, 300, 10));
 		things.add(new Star(400, 600, 100));

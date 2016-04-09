@@ -1,11 +1,11 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Boll implements Drawable {
+public class Ball implements Drawable {
 	int x, y, r;
 	Color color;
-	
-	public Boll(){
+
+	public Ball(){
 		this.x = 0;
 		this.y = 0;
 		this.r = 100;
@@ -15,7 +15,7 @@ public class Boll implements Drawable {
 		System.out.println(this.x);
 	}
 	
-	public Boll(int x, int y, int r) {
+	public Ball(int x, int y, int r) {
 		this.x = x;
 		this.y = y;
 		this.r = r;
@@ -50,13 +50,7 @@ public class Boll implements Drawable {
 	
 	
 	public static void main(String[] args) {
-		System.out.println("hello world");
-		Boll boll1 = new Boll();
-		boll1.printMe();
-		boll1.setR(5);
-		boll1.printMe();
-		
-		System.out.println("bajs");
+		Ball ball1 = new Ball();
 	}
 	
 	public void paint(Graphics g) {
