@@ -30,17 +30,17 @@ public class Ball implements Drawable {
 	}
 	
 	public void printMe(){
-		System.out.println("X = "+this.x+", Y = "+this.y+", r = "+this.r);
+		//System.out.println("X = " + this.x + ", Y = " + this.y + ", r = " + this.r);
 	}
 	
 	public void setX(int x){
-		this.x=x;
+		this.x = x;
 	}
 	public void setY(int y){
-		this.y=y;
+		this.y = y;
 	}
 	public void setR(int r){
-		this.r=r;
+		this.r = r;
 	}
 	
 	public int getX(){
@@ -57,12 +57,12 @@ public class Ball implements Drawable {
 	
 	
 	public static void main(String[] args) {
-		Ball ball1 = new Ball();
+		Ball ball = new Ball();
 	}
 	
 	public void paint(Graphics g) {
 		g.setColor(this.color);
-		g.fillOval(this.x - this.r/2, this.y - this.r/2, this.r, this.r);
+		g.fillOval(this.x - this.r / 2, this.y - this.r / 2, this.r, this.r);
 	}
 	
 }

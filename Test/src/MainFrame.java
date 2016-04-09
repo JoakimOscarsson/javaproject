@@ -13,7 +13,7 @@ public class MainFrame extends JFrame {
 		this.controller = new Controller(this.model, this.view);
 				
 		this.setSize(1920, 1080);
-		this.setTitle("Amazing Java");
+		this.setTitle("Thing Blobber");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.add(this.view);
 		this.setVisible(true);
