@@ -1,8 +1,10 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Random;
 
 public class Ball implements Drawable {
-	int x, y, r,dx,dy;
+	int x, y, r,speed;
+	double theta;
 	Color color;
 
 	public Ball(){
@@ -11,14 +13,14 @@ public class Ball implements Drawable {
 		this.r = 100;
 		//this.color = Color.RED;
 		this.color = new Color(255, 0, 0);
-		this.dx = 10;
-		this.dy = 0;
+		this.speed = 50;
 		
 		System.out.println(this.x);
 	}
 	public void update(){
-		this.x += this.dx;
-		this.y += this.dy;
+		this.x += (int)(this.speed * Math.cos(this.theta));
+		this.y += (int)(this.speed * Math.sin(this.theta));
+		
 	}
 	
 	public Ball(int x, int y, int r) {
@@ -26,17 +28,17 @@ public class Ball implements Drawable {
 		this.y = y;
 		this.r = r;
 		this.color = Color.RED;
-		this.dx = 10;
-		this.dy = 0;
+		this.speed = 50;
 	}
 	
 	public Ball(int x, int y, int r, Color color) {
+		Random rand = new Random();
 		this.x = x;
 		this.y = y;
 		this.r = r;
 		this.color = color;
-		this.dx = 10;
-		this.dy = 0;
+		this.theta = Math.toRadians(rand.nextInt(360));
+		this.speed = (500-this.r)/3;
 	}
 	
 	public void printMe(){
