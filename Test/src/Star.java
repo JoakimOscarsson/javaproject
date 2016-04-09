@@ -22,6 +22,10 @@ public class Star implements Drawable {
 		this.color = color;
 	}
 	
+	public void update(){
+		
+	}
+	
 	public void setX(int x){
 		this.x=x;
 	}

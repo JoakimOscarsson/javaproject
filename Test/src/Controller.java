@@ -1,10 +1,14 @@
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
+import java.util.ArrayList;
 
-public class Controller implements MouseListener, MouseMotionListener {
+import javax.swing.*;
+import javax.swing.text.StyledEditorKit.ForegroundAction;
+
+public class Controller implements MouseListener, MouseMotionListener, ActionListener {
 	Model model;
 	View view;
+	Timer screenRefreshRate;
+	Timer modelRefreshRate;
 	
 	public Controller(Model model, View view) {
 		this.model = model;
@@ -12,7 +16,12 @@ public class Controller implements MouseListener, MouseMotionListener {
 		
 		view.addMouseListener(this);
 		view.addMouseMotionListener(this);
+		
+		//Timers:
+		screenRefreshRate = new Timer(100,this);
+		screenRefreshRate.start();
 	}
+	
 	
 	public void addRandomThing(MouseEvent e) {
 		//System.out.println("pressed");
@@ -59,6 +68,14 @@ public class Controller implements MouseListener, MouseMotionListener {
 		addRandomThing(e);
 		view.repaint();
 		//System.out.println("bahs");
+	}
+	
+	public void actionPerformed(ActionEvent e){
+		ArrayList<Drawable> objs = this.model.getThings();
+		for(Drawable i:objs) {
+			i.update();
+		}
+		this.view.repaint();
 	}
 }
 
