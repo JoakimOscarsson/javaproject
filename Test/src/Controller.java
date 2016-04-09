@@ -18,6 +18,8 @@ public class Controller implements MouseListener, MouseMotionListener{
 		view.addMouseMotionListener(this);
 		
 
+
+
 	}
 	
 	
