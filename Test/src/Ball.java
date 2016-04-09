@@ -38,7 +38,7 @@ public class Ball implements Drawable {
 		this.r = r;
 		this.color = color;
 		this.theta = Math.toRadians(rand.nextInt(360));
-		this.speed = (500-this.r)/3;
+		this.speed = (500-this.r)/30+1;
 	}
 	
 	public void printMe(){
