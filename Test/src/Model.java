@@ -17,7 +17,8 @@ public class Model {
 		Random rand = new Random();
 		Drawable thing;
 		
-		int shape = rand.nextInt(4);
+		//int shape = rand.nextInt(4);
+		int shape = rand.nextInt(3);
 		int size = 30 + rand.nextInt(470);
 		int R = rand.nextInt(255);
 		int G = rand.nextInt(255);
@@ -31,13 +32,13 @@ public class Model {
 				thing = new Star(x, y, size, new Color(R, G, B));
 				break;
 			case 2:
-				thing = new Square(x, y, size, new Color(R, G, B));
-				break;
-			case 3:
 				thing = new Polygon(x, y, size, new Color(R, G, B));
 				break;
+			/*case 3:
+				thing = new Square(x, y, size, new Color(R, G, B));
+				break;*/
 			default:
-				thing = new Ball(x, y, size, new Color(R, G, B));
+				thing = new Polygon(x, y, size, new Color(R, G, B));
 				break;
 		}
 		

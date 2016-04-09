@@ -14,6 +14,7 @@ public class Ball implements Drawable {
 		
 		System.out.println(this.x);
 	}
+	
 	public void update(){
 		
 	}
