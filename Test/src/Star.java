@@ -15,6 +15,13 @@ public class Star implements Drawable {
 		this.color = new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255));
 	}
 	
+	public Star(int x, int y, int r, Color color) {
+		this.x = x;
+		this.y = y;
+		this.r = r;
+		this.color = color;
+	}
+	
 	public void setX(int x){
 		this.x=x;
 	}

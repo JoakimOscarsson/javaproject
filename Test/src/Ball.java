@@ -22,6 +22,13 @@ public class Ball implements Drawable {
 		this.color = Color.RED;
 	}
 	
+	public Ball(int x, int y, int r, Color color) {
+		this.x = x;
+		this.y = y;
+		this.r = r;
+		this.color = color;
+	}
+	
 	public void printMe(){
 		System.out.println("X = "+this.x+", Y = "+this.y+", r = "+this.r);
 	}
