@@ -2,7 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Ball implements Drawable {
-	int x, y, r;
+	int x, y, r,dx,dy;
 	Color color;
 
 	public Ball(){
@@ -11,12 +11,15 @@ public class Ball implements Drawable {
 		this.r = 100;
 		//this.color = Color.RED;
 		this.color = new Color(255, 0, 0);
+		this.dx = 10;
+		this.dy = 0;
 		
 		System.out.println(this.x);
 	}
 	
 	public void update(){
-		
+		this.x += this.dx;
+		this.y += this.dy;
 	}
 	
 	public Ball(int x, int y, int r) {
@@ -24,6 +27,8 @@ public class Ball implements Drawable {
 		this.y = y;
 		this.r = r;
 		this.color = Color.RED;
+		this.dx = 10;
+		this.dy = 0;
 	}
 	
 	public Ball(int x, int y, int r, Color color) {
@@ -31,6 +36,8 @@ public class Ball implements Drawable {
 		this.y = y;
 		this.r = r;
 		this.color = color;
+		this.dx = 10;
+		this.dy = 0;
 	}
 	
 	public void printMe(){
