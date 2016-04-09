@@ -24,6 +24,8 @@ public class Model {
 		int G = rand.nextInt(255);
 		int B = rand.nextInt(255);
 		
+		shape = 0;
+		
 		switch (shape) {
 			case 0:
 				thing = new Ball(x, y, size, new Color(R, G, B));

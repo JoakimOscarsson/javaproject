@@ -21,7 +21,6 @@ public class Ball implements Drawable {
 	public void update(){
 		this.x += (int)(this.speed * Math.cos(this.theta));
 		this.y += (int)(this.speed * Math.sin(this.theta));
-		
 	}
 	
 	public Ball(int x, int y, int r) {
@@ -38,8 +37,8 @@ public class Ball implements Drawable {
 		this.y = y;
 		this.r = r;
 		this.color = color;
-		this.theta = Math.toRadians(rand.nextInt(360));
-		this.speed = (500-this.r)/3;
+		this.theta = Math.toRadians(rand.nextInt(359)) + 1;
+		this.speed = Math.abs((500 - this.r) / 60) + 2;
 	}
 	
 	public void printMe(){

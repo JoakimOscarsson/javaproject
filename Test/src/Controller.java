@@ -18,7 +18,7 @@ public class Controller implements MouseListener, MouseMotionListener, ActionLis
 		view.addMouseMotionListener(this);
 		
 		//Timers:
-		screenRefreshRate = new Timer(10,this);
+		screenRefreshRate = new Timer(5, this);
 		screenRefreshRate.start();
 	}
 	
