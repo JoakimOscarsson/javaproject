@@ -1,10 +1,10 @@
 
-public class farg {
+public class Farg {
 	int r,g,b;
 	
 	
 	
-	public farg(int R, int G, int B){
+	public Farg(int R, int G, int B){
 		this.setRGB(R, G, B);
 	}
 	
