@@ -1,7 +1,6 @@
 public class boll {
 	float x,y,r;
 	farg color;
-		
 	
 	
 	public boll(){
@@ -54,6 +53,8 @@ public class boll {
 		boll1.setR(5);
 		boll1.printMe();
 		boll1.setColor(new farg(50,50,50));
+		
+		System.out.println("bajs");
 	}
 	
 }
