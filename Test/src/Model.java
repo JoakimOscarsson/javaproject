@@ -6,8 +6,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.swing.Timer;
 
 import java.awt.Color;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Ellipse2D;
 
 public class Model  implements Runnable{
 	private Thread engine;
@@ -31,7 +33,7 @@ public class Model  implements Runnable{
 		
 		while(this.running){
 			//Move objects
-			for(DynamicEntity i : things.values() ){
+			for(DynamicEntity i : this.things.values() ){
 				calculateMovement(i);
 				i.update();
 			}
@@ -66,6 +68,10 @@ public class Model  implements Runnable{
 		int[] out = {this.fps,1000/delay};
 		return out;
 	}
+	
+	public void setTargetDataFPS(int targetFPS){
+		this.delay = 1000/targetFPS;
+	}
 	 
 	public ConcurrentHashMap<String,DynamicEntity> getThings(){
 		return this.things;
@@ -89,7 +95,7 @@ public class Model  implements Runnable{
 		int G = rand.nextInt(255);
 		int B = rand.nextInt(255);
 		
-		//shape = 0;
+		shape = 0;
 		
 		switch (shape) {
 			case 0:
@@ -124,39 +130,56 @@ public class Model  implements Runnable{
 	}
 	
 	private void calculateMovement(DynamicEntity obj){
-		double angle = obj.getAngle();
-		System.out.println("inc. anlge= "+angle);
-		int speed = obj.getSpeed();
+		//double angle = obj.getAngle();
+		boolean moveX = true;
+		boolean moveY = true;
 		
 		//calculate deltas
-		int dx = (int)(speed*Math.cos(angle));
-		int dy = (int)(speed*Math.sin(angle));
+		double dx = obj.getDx();
+		double dy = obj.getDy();
+		
+		
+		//Check dynamical objects:
+		Rectangle r1 = new Rectangle((int)(obj.getX()-obj.getR()/2+dx), (int)(obj.getY()-obj.getR()/2+dy), obj.getR(), obj.getR());
+		//Check if close:
+		for(DynamicEntity i : this.things.values() ){		
+			if (obj.getID() != i.getID()){
+				double dx2 =  i.getDx();
+				double dy2 =  i.getDy();
+				Rectangle r2 = new Rectangle((int)(i.getX()-i.getR()/2+dx2), (int)(i.getY()-i.getR()/2+dy2), i.getR(), i.getR());
+				if(r1.intersects(r2)){
+					//Check for collision:
+					double d = Math.sqrt( Math.pow( (obj.getX()+dx) - (i.getX()+dx2) , 2) + Math.pow( (obj.getY()+dy) - (i.getY()+dy2) , 2) );
+					if(d <= (obj.getR()+i.getR())/2){
+						//calculate new speeds
+						double tmp_dx = dx, tmp_dy = dy;
+						dx = (dx * (obj.getR() - i.getR()) + (2 * i.getR() * dx2)) / (obj.getR() + i.getR());
+						dy = (dy * (obj.getR() - i.getR()) + (2 * i.getR() * dy2)) / (obj.getR() + i.getR());
+						dx2 = (dx2 * (i.getR() - obj.getR()) + (2 * obj.getR() * tmp_dx)) / (obj.getR() + i.getR());
+						dy2 = (dy2 * (i.getR() - obj.getR()) + (2 * obj.getR() * tmp_dy)) / (obj.getR() + i.getR());
+						
+						//Update collided
+						i.updateX(dx2);
+						i.updateY(dy2);
+					}
+				}				
+			}
+		}
+		
 		
 		//Check X boundaries:
 		if((obj.getX()-obj.getR()/2+dx <= 0) || (obj.getX()+obj.getR()/2+dx >= this.boudary[0])){
-			//fix angle:
-			angle = (angle-2*angle+Math.PI)%(2*Math.PI);
-			obj.setAngle(angle);
-			System.out.println("stuck in X");
-		}else{
-			//Move in X
-			obj.updateX(dx);
+			System.out.println(dx);
+			dx = -dx;
 		}
+
 		
 		//Check Y boundaries:
 		if((obj.getY()-obj.getR()/2+dy <= 0) || (obj.getY()+obj.getR()/2+dy >= this.boudary[1])){
-			//fix angle:
-			double tmp = angle;
-			angle = (Math.PI-angle+Math.PI)%(2*Math.PI);
-			obj.setAngle(angle);
-			System.out.println("stuck in Y");
-			System.out.println(Math.toDegrees(tmp) + "->" + Math.toDegrees(angle));
-
-		}else{
-			//Move in Y
-			System.out.println("nope!");
-			obj.updateY(dy);
+			dy = -dy;
 		}
+		obj.updateX(dx);
+		obj.updateY(dy);
 	}
 
 }
