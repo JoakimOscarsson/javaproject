@@ -3,7 +3,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Random;
 
-public class Ball implements DynamicEntity, Movable {
+public class Ball implements DynamicEntity {
 	int x, y, r,speed;
 	double theta;
 	Color color;
