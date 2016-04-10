@@ -9,22 +9,63 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Model  implements ActionListener {
-	Timer modelRefreshRate;
-	//ArrayList<Drawable> things = new ArrayList<Drawable>();
+public class Model  implements Runnable, ActionListener {
+	private Thread engine;
+	private boolean running = false;
+	private int delay = 33;
+	private int fps;
 	private ConcurrentHashMap<String,Drawable> things = new ConcurrentHashMap<String,Drawable>();
 	
 	
 	public Model(){
-		//Timers:
-		this.modelRefreshRate = new Timer(10,this);
-		this.modelRefreshRate.start();
+
 	}
 	
-	/*
-	public ArrayList<Drawable> getThings() {
-		return things;
-	}*/
+	private void calculateMovement(Drawable obj){
+		
+	}
+	
+	public void run(){
+		long lastDataFrameTime = System.nanoTime();
+		int dataFrames = 0;
+		
+		while(this.running){
+			//Move objects
+			for(Drawable i : things.values() ){
+				calculateMovement(i);
+			}
+			
+			
+			//Calc dataFPS
+			dataFrames++;
+			if(System.nanoTime() - lastDataFrameTime >= 1000000000L){
+				this.fps = dataFrames;
+				dataFrames = 0;
+				lastDataFrameTime = System.nanoTime();
+			}
+			
+			//sleep
+			try {
+				Thread.sleep(this.delay);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	 public void start(){
+		 if(this.running){
+			 return;
+		 }
+		 this.running = true;
+		 this.engine = new Thread(this);
+		 this.engine.start();
+	 }
+	
+	public int[] getDataFPS(){
+		int[] out = {this.fps,1000/delay};
+		return out;
+	}
+	 
 	public ConcurrentHashMap<String,Drawable> getThings(){
 		return this.things;
 	}

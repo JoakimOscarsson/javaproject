@@ -1,6 +1,7 @@
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -20,18 +21,37 @@ public class View extends Canvas implements Runnable {
 	private Graphics2D g;
 	private boolean running = false;
 	private Thread screen;
+	private int delay = 33;
+	private int fps;
 
 	public View(Model model) {
 		this.model = model;
 	}
-	
-	
+		
 	public void run(){
+		long lastFrameTime = System.nanoTime();
+		int frames = 0;
+		
 		while(this.running){
 			this.g = (Graphics2D) this.getBufferStrategy().getDrawGraphics();
 			render();
 			this.g.dispose();
 			this.getBufferStrategy().show();
+
+			//Calc FPS
+			frames++;
+			if(System.nanoTime() - lastFrameTime >= 1000000000L){
+				this.fps = frames;
+				frames = 0;
+				lastFrameTime = System.nanoTime();
+			}
+			
+			//sleep
+			try {
+				Thread.sleep(this.delay);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -43,11 +63,7 @@ public class View extends Canvas implements Runnable {
 		this.screen = new Thread(this);
 		this.screen.start();
 	}
-	
-	//public void setBufferStrategy(BufferStrategy bs){
-	//	this.bs = bs;
-	//}
-	
+		
 	public void render(){
 		//Background
 		this.g.setColor(Color.black);
@@ -56,34 +72,15 @@ public class View extends Canvas implements Runnable {
 		
 		for (Drawable i : model.getThings().values() ){
 			i.paint(this.g);
-		    //do something with them
 		}
-		
-		/*for(Drawable i:model.getThings()) {
-			i.paint(this.g);
-		}*/
-		
-		
+		//Foreground
+		g.setColor(Color.yellow);
+		g.setFont(new Font("dialog",Font.PLAIN,12));
+		g.drawString("FPS: "+this.fps+"("+1000/this.delay+")/"+this.model.getDataFPS()[0]+"("+this.model.getDataFPS()[1]+")", 5, 15);
 	}
 	
-	//public Dimension getSize(){
-	//	return this.size;
-	//}
-	//public void setSize(Dimension size){
-	//	this.size = size;
-	//}
-	
-	
-	public void paintComponent(Graphics g) {
-		//super.paintComponent(g);
-		//g.drawLine(0, 300, 300, 300);
-		//g.drawLine(300, 0, 300, 300);
-		
-
-	}
-
 	public void setScreenFPS(int targetFPS){
-		
+		this.delay = 1000/targetFPS;
 	}
 	
 

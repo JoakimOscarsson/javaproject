@@ -19,6 +19,7 @@ public class MainFrame extends JFrame {
 		
 		//Init model:
 		this.model = new Model();
+		this.model.start();
 		
 		//Init View:
 		this.view = new View(this.model);
