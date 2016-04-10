@@ -20,6 +20,7 @@ public class MainFrame extends JFrame {
 		//Init model:
 		this.model = new Model();
 		this.model.start();
+		this.model.setTargetDataFPS(60);
 		
 		//Init View:
 		this.view = new View(this.model);
@@ -28,6 +29,7 @@ public class MainFrame extends JFrame {
 		this.pack();
 		this.view.createBufferStrategy(2);
 		this.view.start();
+		this.view.setTargetScreenFPS(60);
 		
 		//Init Controller:
 		this.controller = new Controller(this.model, this.view);

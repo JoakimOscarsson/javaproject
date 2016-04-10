@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -31,7 +32,8 @@ public class Controller implements MouseListener, MouseMotionListener{
 		int x = e.getX();
 		int y = e.getY();
 		
-		this.model.addRandomThing(x, y);
+		//this.model.addRandomThing(x, y);
+		this.model.addThing(new Ball(Integer.toString(this.model.getHashSize()+1),x,y,50,Color.blue));
 	}
 	
 	public void mousePressed(MouseEvent e) {
@@ -68,7 +70,6 @@ public class Controller implements MouseListener, MouseMotionListener{
 	
 	public void mouseDragged(MouseEvent e) {
 		addRandomThing(e);
-		view.repaint();
 		//System.out.println("bahs");
 	}
 

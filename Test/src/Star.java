@@ -8,23 +8,23 @@ public class Star extends Ball implements DynamicEntity {
 	int rmax;
 	boolean growing;
 	
-	public Star(String ID, int x, int y, int r) {
+	public Star(String ID, double x, double y, int r) {
 		this(ID,x,y,r,Color.BLUE);
 	}
 	
-	public Star(String ID, int x, int y, int r, Color color) {
+	public Star(String ID, double x, double y, int r, Color color) {
 		super(ID,x,y,r,color);
 		this.rmax = r;
 		this.growing = false;
 	}
 	
 	@Override
-	public void updateX(int deltaX) {
+	public void updateX(double deltaX) {
 		//Do nothing
 	}
 
 	@Override
-	public void updateY(int deltaY) {
+	public void updateY(double deltaY) {
 		//Do nothing
 	}
 	
@@ -48,11 +48,11 @@ public class Star extends Ball implements DynamicEntity {
 	public void paint(Graphics2D g) {
 		int o = this.r / 2;
 		g.setColor(this.color);
-		g.drawLine(this.x - o, this.y - o + this.r, this.x - o + this.r / 2, this.y - o);
-		g.drawLine(this.x - o + this.r / 2, this.y - o, this.x - o + this.r, this.y - o + this.r);
-		g.drawLine(this.x - o + this.r, this.y - o + this.r, this.x - o, this.y - o+ this.r / 3);
-		g.drawLine(this.x - o, this.y - o + this.r / 3, this.x - o + this.r, this.y - o + this.r / 3);
-		g.drawLine(this.x - o + this.r, this.y - o + this.r / 3, this.x - o, this.y - o + this.r);
+		g.drawLine((int)this.x - o, (int)this.y - o + this.r, (int)this.x - o + this.r / 2, (int)this.y - o);
+		g.drawLine((int)this.x - o + this.r / 2, (int)this.y - o, (int)this.x - o + this.r, (int)this.y - o + this.r);
+		g.drawLine((int)this.x - o + this.r, (int)this.y - o + this.r, (int)this.x - o, (int)this.y - o+ this.r / 3);
+		g.drawLine((int)this.x - o, (int)this.y - o + this.r / 3, (int)this.x - o + this.r, (int)this.y - o + this.r / 3);
+		g.drawLine((int)this.x - o + this.r, (int)this.y - o + this.r / 3, (int)this.x - o, (int)this.y - o + this.r);
 	}
 	
 

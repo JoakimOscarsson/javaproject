@@ -17,11 +17,11 @@ public class Polygon extends Ball implements DynamicEntity {
 		this(ID,0,0,100,Color.BLUE);
 		
 	}
-	public Polygon(String ID, int x, int y, int r) {
+	public Polygon(String ID, double x, double y, int r) {
 		this(ID,x,y,r,Color.BLUE);
 	}
 	
-	public Polygon(String ID, int x, int y, int r, Color color) {
+	public Polygon(String ID, double x, double y, int r, Color color) {
 		super(ID,x,y,r,color);
 		Random rand = new Random();
 		this.polyN = rand.nextInt(10);
@@ -29,18 +29,18 @@ public class Polygon extends Ball implements DynamicEntity {
 		this.polyY = new int[this.polyN];		
 
 		for(int i = 0; i < this.polyN; i++) {
-			this.polyX[i] = this.x + rand.nextInt(this.r) - this.r / 2;
-			this.polyY[i] = this.y + rand.nextInt(this.r) - this.r / 2;
+			this.polyX[i] = (int)this.x + rand.nextInt(this.r) - this.r / 2;
+			this.polyY[i] = (int)this.y + rand.nextInt(this.r) - this.r / 2;
 		}
 	}
 	
 	@Override
-	public void updateX(int deltaX) {
+	public void updateX(double deltaX) {
 		//Do nothing
 	}
 
 	@Override
-	public void updateY(int deltaY) {
+	public void updateY(double deltaY) {
 		//Do nohting
 	}
 	

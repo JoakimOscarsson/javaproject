@@ -21,12 +21,12 @@ public class Square extends Ball implements DynamicEntity {
 	}
 	
 	@Override
-	public void updateX(int deltaX) {
+	public void updateX(double deltaX) {
 		//Do nothing
 	}
 
 	@Override
-	public void updateY(int deltaY) {
+	public void updateY(double deltaY) {
 		//Do nohting
 	}
 	

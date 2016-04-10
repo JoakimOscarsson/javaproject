@@ -79,7 +79,7 @@ public class View extends Canvas implements Runnable {
 		g.drawString("FPS: "+this.fps+"("+1000/this.delay+")/"+this.model.getDataFPS()[0]+"("+this.model.getDataFPS()[1]+")", 5, 15);
 	}
 	
-	public void setScreenFPS(int targetFPS){
+	public void setTargetScreenFPS(int targetFPS){
 		this.delay = 1000/targetFPS;
 	}
 	
