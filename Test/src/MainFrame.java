@@ -32,15 +32,7 @@ public class MainFrame extends JFrame {
 		//Init Controller:
 		this.controller = new Controller(this.model, this.view);
 				
-		
-		
-		//Tmp:
-		
 
-		
-		
-		
-		
 	}
 	
 	public static void main(String[] args) {

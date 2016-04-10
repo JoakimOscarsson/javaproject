@@ -1,3 +1,4 @@
+import java.awt.Dimension;
 import java.awt.event.*;
 import java.util.ArrayList;
 
@@ -12,6 +13,10 @@ public class Controller implements MouseListener, MouseMotionListener{
 		this.model = model;
 		this.view = view;
 		
+		
+		
+		
+		//Init Listeners
 		this.view.addMouseListener(this);
 		this.view.addMouseMotionListener(this);
 		

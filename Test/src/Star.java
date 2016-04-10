@@ -3,31 +3,32 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Random;
 
-public class Star implements Drawable {
+public class Star extends Ball implements DynamicEntity {
 	private String ID;
-	int x, y, r, rmax;
+	int rmax;
 	boolean growing;
-	Color color;
 	
-	public Star(int x, int y, int r) {
-		Random rand = new Random();
-		
-		this.x = x;
-		this.y = y;
-		this.r = r;
-		this.color = new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255));
+	public Star(String ID, int x, int y, int r) {
+		this(ID,x,y,r,Color.BLUE);
 	}
 	
 	public Star(String ID, int x, int y, int r, Color color) {
-		this.ID = ID;
-		this.x = x;
-		this.y = y;
-		this.r = r;
-		this.color = color;
+		super(ID,x,y,r,color);
 		this.rmax = r;
 		this.growing = false;
 	}
 	
+	@Override
+	public void updateX(int deltaX) {
+		//Do nothing
+	}
+
+	@Override
+	public void updateY(int deltaY) {
+		//Do nothing
+	}
+	
+	@Override
 	public void update(){
 		if (this.growing == true) {
 			this.r = this.r + 5;
@@ -43,31 +44,7 @@ public class Star implements Drawable {
 		}
 	}
 	
-	public void setX(int x){
-		this.x=x;
-	}
-	public void setY(int y){
-		this.y=y;
-	}
-	public void setR(int r){
-		this.r=r;
-	}
-	
-	public int getX(){
-		return this.x;
-	}
-	
-	public int getY(){
-		return this.y;
-	}
-	
-	public int getR(){
-		return this.r;
-	}
-	
-	public String getID(){
-		return this.ID;
-	}
+	@Override
 	public void paint(Graphics2D g) {
 		int o = this.r / 2;
 		g.setColor(this.color);

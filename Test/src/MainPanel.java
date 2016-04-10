@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class MainPanel extends JPanel {
-	ArrayList<Drawable> things = new ArrayList<Drawable>();
+	ArrayList<DynamicEntity> things = new ArrayList<DynamicEntity>();
 	
 	public MainPanel() {
 		setBackground(Color.BLACK);

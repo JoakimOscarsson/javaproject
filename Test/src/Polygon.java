@@ -4,44 +4,25 @@ import java.awt.Graphics2D;
 import java.util.Random;
 import java.util.ArrayList;
 
-public class Polygon implements Drawable {
-	String ID;
-	int x, y, r;
-	Color color;
+public class Polygon extends Ball implements DynamicEntity {
 	int[] polyX;
 	int[] polyY;
 	int polyN;
 
-	/*public Polygon(){
-		this.x = 0;
-		this.y = 0;
-		this.r = 100;
-		//this.color = Color.RED;
-		this.color = new Color(255, 0, 0);
-		
-		System.out.println(this.x);
-	}*/
+
 	
-	public void update(){
-		Random rand = new Random();
+
+	
+	public Polygon(String ID){
+		this(ID,0,0,100,Color.BLUE);
 		
-		this.color = new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255));
 	}
-	
-	public Polygon(int x, int y, int r) {
-		this.x = x;
-		this.y = y;
-		this.r = r;
-		this.color = Color.RED;
+	public Polygon(String ID, int x, int y, int r) {
+		this(ID,x,y,r,Color.BLUE);
 	}
 	
 	public Polygon(String ID, int x, int y, int r, Color color) {
-		this.ID = ID;
-		this.x = x;
-		this.y = y;
-		this.r = r;
-		this.color = color;
-		
+		super(ID,x,y,r,color);
 		Random rand = new Random();
 		this.polyN = rand.nextInt(10);
 		this.polyX = new int[this.polyN];
@@ -53,38 +34,24 @@ public class Polygon implements Drawable {
 		}
 	}
 	
-	public void printMe(){
-		//System.out.println("X = " + this.x + ", Y = " + this.y + ", r = " + this.r);
+	@Override
+	public void updateX(int deltaX) {
+		//Do nothing
+	}
+
+	@Override
+	public void updateY(int deltaY) {
+		//Do nohting
 	}
 	
-	public void setX(int x){
-		this.x = x;
-	}
-	public void setY(int y){
-		this.y = y;
-	}
-	public void setR(int r){
-		this.r = r;
+	@Override
+	public void update(){
+		Random rand = new Random();
+		
+		this.color = new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255));
 	}
 	
-	public int getX(){
-		return this.x;
-	}
-	
-	public int getY(){
-		return this.y;
-	}
-	
-	public int getR(){
-		return this.r;
-	}
-	
-	public String getID(){
-		return this.ID;
-	}
-	
-	
-	
+	@Override
 	public void paint(Graphics2D g) {
 		g.setColor(this.color);
 		g.fillPolygon(this.polyX, this.polyY, this.polyN);

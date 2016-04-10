@@ -3,35 +3,20 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Random;
 
-public class Ball implements Drawable {
+public class Ball implements DynamicEntity, Movable {
 	int x, y, r,speed;
 	double theta;
 	Color color;
 	private String ID;
 
-	/*public Ball(){
-		this.x = 0;
-		this.y = 0;
-		this.r = 100;
-		//this.color = Color.RED;
-		this.color = new Color(255, 0, 0);
-		this.speed = 50;
-		
-		System.out.println(this.x);
-	}*/
-	
-	public void update(){
-		this.x += (int)(this.speed * Math.cos(this.theta));
-		this.y += (int)(this.speed * Math.sin(this.theta));
+	public Ball(String ID){
+		this(ID,0,0,100);
 	}
 	
-	/*public Ball(int x, int y, int r) {
-		this.x = x;
-		this.y = y;
-		this.r = r;
-		this.color = Color.RED;
-		this.speed = 50;
-	}*/
+
+	public Ball(String ID, int x, int y, int r) {
+		this(ID,x,y,r,Color.BLUE);
+	}
 	
 	public Ball(String ID, int x, int y, int r, Color color) {
 		Random rand = new Random();
@@ -82,5 +67,45 @@ public class Ball implements Drawable {
 		g.setColor(this.color);
 		g.fillOval(this.x - this.r / 2, this.y - this.r / 2, this.r, this.r);
 	}
+
+	@Override
+	public int getSpeed() {
+		return this.speed;
+	}
+
+	@Override
+	public double getAngle() {
+		return this.theta;
+	}
+
+	@Override
+	public void setSpeed(int newSpeed) {
+		this.speed = newSpeed;
+	}
+
+	@Override
+	public void setAngle(double newAngle) {
+		System.out.println(this.theta);
+		this.theta = newAngle;
+		System.out.println(this.theta);
+	}
+
+	@Override
+	public void updateX(int deltaX) {
+		this.x += deltaX;
+	}
+
+	@Override
+	public void updateY(int deltaY) {
+		this.y += deltaY;
+	}
+	
+	public void update(){
+		/*
+		this.x += (int)(this.speed * Math.cos(this.theta));
+		this.y += (int)(this.speed * Math.sin(this.theta));
+		*/
+	}
+	
 	
 }

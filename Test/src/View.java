@@ -70,7 +70,7 @@ public class View extends Canvas implements Runnable {
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		//Objects
 		
-		for (Drawable i : model.getThings().values() ){
+		for (DynamicEntity i : model.getThings().values() ){
 			i.paint(this.g);
 		}
 		//Foreground
