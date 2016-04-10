@@ -7,15 +7,9 @@ public class MainPanel extends JPanel {
 	
 	public MainPanel() {
 		setBackground(Color.BLACK);
-		things.add(new Ball(100, 100, 50));
-		things.add(new Ball(100, 300, 10));
-		things.add(new Ball(400, 600, 100));
-		things.add(new Star(300, 300, 50));
-		things.add(new Star(200, 300, 10));
-		things.add(new Star(400, 600, 100));
-	}
+	}/*
 	
-	public void paintComponent(Graphics g) {
+	public void paintComponent(Graphics2D g) {
 		super.paintComponent(g);
 		//g.drawLine(0, 300, 300, 300);
 		//g.drawLine(300, 0, 300, 300);
@@ -23,5 +17,5 @@ public class MainPanel extends JPanel {
 		for(Drawable i:things) {
 			i.paint(g);
 		}
-	}
+	}*/
 }

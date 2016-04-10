@@ -1,8 +1,10 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.Random;
 
 public class Star implements Drawable {
+	private String ID;
 	int x, y, r, rmax;
 	boolean growing;
 	Color color;
@@ -16,7 +18,8 @@ public class Star implements Drawable {
 		this.color = new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255));
 	}
 	
-	public Star(int x, int y, int r, Color color) {
+	public Star(String ID, int x, int y, int r, Color color) {
+		this.ID = ID;
 		this.x = x;
 		this.y = y;
 		this.r = r;
@@ -62,7 +65,10 @@ public class Star implements Drawable {
 		return this.r;
 	}
 	
-	public void paint(Graphics g) {
+	public String getID(){
+		return this.ID;
+	}
+	public void paint(Graphics2D g) {
 		int o = this.r / 2;
 		g.setColor(this.color);
 		g.drawLine(this.x - o, this.y - o + this.r, this.x - o + this.r / 2, this.y - o);

@@ -1,16 +1,18 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.Random;
 import java.util.ArrayList;
 
 public class Polygon implements Drawable {
+	String ID;
 	int x, y, r;
 	Color color;
 	int[] polyX;
 	int[] polyY;
 	int polyN;
 
-	public Polygon(){
+	/*public Polygon(){
 		this.x = 0;
 		this.y = 0;
 		this.r = 100;
@@ -18,7 +20,7 @@ public class Polygon implements Drawable {
 		this.color = new Color(255, 0, 0);
 		
 		System.out.println(this.x);
-	}
+	}*/
 	
 	public void update(){
 		Random rand = new Random();
@@ -33,7 +35,8 @@ public class Polygon implements Drawable {
 		this.color = Color.RED;
 	}
 	
-	public Polygon(int x, int y, int r, Color color) {
+	public Polygon(String ID, int x, int y, int r, Color color) {
+		this.ID = ID;
 		this.x = x;
 		this.y = y;
 		this.r = r;
@@ -76,11 +79,13 @@ public class Polygon implements Drawable {
 		return this.r;
 	}
 	
-	public static void main(String[] args) {
-		Polygon Polygon = new Polygon();
+	public String getID(){
+		return this.ID;
 	}
 	
-	public void paint(Graphics g) {
+	
+	
+	public void paint(Graphics2D g) {
 		g.setColor(this.color);
 		g.fillPolygon(this.polyX, this.polyY, this.polyN);
 	}

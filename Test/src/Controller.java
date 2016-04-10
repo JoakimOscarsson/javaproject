@@ -7,15 +7,13 @@ import javax.swing.text.StyledEditorKit.ForegroundAction;
 public class Controller implements MouseListener, MouseMotionListener{
 	Model model;
 	View view;
-	Timer screenRefreshRate;
-	Timer modelRefreshRate;
 	
 	public Controller(Model model, View view) {
 		this.model = model;
 		this.view = view;
 		
-		view.addMouseListener(this);
-		view.addMouseMotionListener(this);
+		this.view.addMouseListener(this);
+		this.view.addMouseMotionListener(this);
 		
 
 
@@ -41,7 +39,6 @@ public class Controller implements MouseListener, MouseMotionListener{
 			this.model.clearList();
 		}
 				
-		view.repaint();
 	}
 	
 	public void mouseReleased(MouseEvent e) {

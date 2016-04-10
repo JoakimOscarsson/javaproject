@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.swing.Timer;
 
@@ -9,7 +11,9 @@ import java.awt.event.ActionListener;
 
 public class Model  implements ActionListener {
 	Timer modelRefreshRate;
-	ArrayList<Drawable> things = new ArrayList<Drawable>();
+	//ArrayList<Drawable> things = new ArrayList<Drawable>();
+	private ConcurrentHashMap<String,Drawable> things = new ConcurrentHashMap<String,Drawable>();
+	
 	
 	public Model(){
 		//Timers:
@@ -17,19 +21,24 @@ public class Model  implements ActionListener {
 		this.modelRefreshRate.start();
 	}
 	
-	
+	/*
 	public ArrayList<Drawable> getThings() {
 		return things;
+	}*/
+	public ConcurrentHashMap<String,Drawable> getThings(){
+		return this.things;
 	}
 	
-	public void addThings(Drawable thing) {
-		things.add(thing);
+	
+	public void addThing(Drawable thing) {
+		things.put(thing.getID(), thing);
 	}
 
 
 	public void addRandomThing(int x, int y) {
 		Random rand = new Random();
 		Drawable thing;
+		String newID = Integer.toString(getHashSize()+1);
 		
 		//int shape = rand.nextInt(4);
 		int shape = rand.nextInt(3);
@@ -42,23 +51,23 @@ public class Model  implements ActionListener {
 		
 		switch (shape) {
 			case 0:
-				thing = new Ball(x, y, size, new Color(R, G, B));
+				thing = new Ball(newID, x, y, size, new Color(R, G, B));
 				break;
 			case 1:
-				thing = new Star(x, y, size, new Color(R, G, B));
+				thing = new Star(newID, x, y, size, new Color(R, G, B));
 				break;
 			case 2:
-				thing = new Polygon(x, y, size, new Color(R, G, B));
+				thing = new Polygon(newID, x, y, size, new Color(R, G, B));
 				break;
 			/*case 3:
 				thing = new Square(x, y, size, new Color(R, G, B));
 				break;*/
 			default:
-				thing = new Polygon(x, y, size, new Color(R, G, B));
+				thing = new Polygon(newID, x, y, size, new Color(R, G, B));
 				break;
 		}
 		
-		things.add(thing);
+		this.addThing(thing);
 		//System.out.println(things.toString());
 	}
 	
@@ -66,13 +75,17 @@ public class Model  implements ActionListener {
 		this.things.clear();
 	}
 	
+	public int getHashSize(){
+		return this.things.size();
+	}
+	
 
 	
 	
 	public void actionPerformed(ActionEvent e){
-		for(Drawable i:this.things) {
-			i.update();
-		}
+		//for(Drawable i:this.things) {
+			//i.update();
+		//}
 	}
 }
 

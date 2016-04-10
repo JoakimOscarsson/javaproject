@@ -1,13 +1,15 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.Random;
 
 public class Ball implements Drawable {
 	int x, y, r,speed;
 	double theta;
 	Color color;
+	private String ID;
 
-	public Ball(){
+	/*public Ball(){
 		this.x = 0;
 		this.y = 0;
 		this.r = 100;
@@ -16,23 +18,24 @@ public class Ball implements Drawable {
 		this.speed = 50;
 		
 		System.out.println(this.x);
-	}
+	}*/
 	
 	public void update(){
 		this.x += (int)(this.speed * Math.cos(this.theta));
 		this.y += (int)(this.speed * Math.sin(this.theta));
 	}
 	
-	public Ball(int x, int y, int r) {
+	/*public Ball(int x, int y, int r) {
 		this.x = x;
 		this.y = y;
 		this.r = r;
 		this.color = Color.RED;
 		this.speed = 50;
-	}
+	}*/
 	
-	public Ball(int x, int y, int r, Color color) {
+	public Ball(String ID, int x, int y, int r, Color color) {
 		Random rand = new Random();
+		this.ID = ID;
 		this.x = x;
 		this.y = y;
 		this.r = r;
@@ -70,11 +73,12 @@ public class Ball implements Drawable {
 	}
 	
 	
-	public static void main(String[] args) {
-		Ball ball = new Ball();
+	public String getID(){
+		return this.ID;
 	}
 	
-	public void paint(Graphics g) {
+	
+	public void paint(Graphics2D g) {
 		g.setColor(this.color);
 		g.fillOval(this.x - this.r / 2, this.y - this.r / 2, this.r, this.r);
 	}
