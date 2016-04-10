@@ -69,7 +69,7 @@ public class Controller implements MouseListener, MouseMotionListener{
 	}
 	
 	public void mouseDragged(MouseEvent e) {
-		addRandomThing(e);
+		//addRandomThing(e);
 		//System.out.println("bahs");
 	}
 
