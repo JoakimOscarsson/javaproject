@@ -2,7 +2,7 @@ import java.awt.*;
 import javax.swing.*;
 
 public class MainFrame extends JFrame {
-	JPanel panel;
+	//JPanel panel;
 	Model model;
 	View view;
 	Controller controller;
@@ -33,7 +33,8 @@ public class MainFrame extends JFrame {
 		
 		//Init Controller:
 		this.controller = new Controller(this.model, this.view);
-				
+		this.addKeyListener(this.controller.manipulator);
+		this.view.addKeyListener(this.controller.manipulator);
 
 	}
 	

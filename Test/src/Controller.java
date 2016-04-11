@@ -9,21 +9,14 @@ import javax.swing.text.StyledEditorKit.ForegroundAction;
 public class Controller implements MouseListener, MouseMotionListener{
 	Model model;
 	View view;
+	Manipulator manipulator = new Manipulator();
 	
 	public Controller(Model model, View view) {
 		this.model = model;
 		this.view = view;
-		
-		
-		
-		
 		//Init Listeners
 		this.view.addMouseListener(this);
 		this.view.addMouseMotionListener(this);
-		
-
-
-
 	}
 	
 	
@@ -32,18 +25,24 @@ public class Controller implements MouseListener, MouseMotionListener{
 		int x = e.getX();
 		int y = e.getY();
 		
-		//this.model.addRandomThing(x, y);
-		this.model.addThing(new Ball(Integer.toString(this.model.getHashSize()+1),x,y,50,Color.blue));
+		this.model.addRandomThing(x, y);
+		//this.model.addThing(new Ball(Integer.toString(this.model.getHashSize()+1),x,y,50,Color.blue));
 	}
 	
 	public void mousePressed(MouseEvent e) {
 		int btn = e.getButton();
 		
 		if (btn == 1) {
-			addRandomThing(e);
+			DynamicEntity d = model.select(e.getX(),e.getY());
+			if(d!=null){
+				this.manipulator.setManipulable(d);
+			}else{
+				addRandomThing(e);
+			}
 		}
 		else {
 			this.model.clearList();
+			this.manipulator.clearManipulable();
 		}
 				
 	}

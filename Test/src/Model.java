@@ -119,8 +119,6 @@ public class Model  implements Runnable{
 		//System.out.println(things.toString());
 	}
 	
-	
-	
 	public void clearList() {
 		this.things.clear();
 	}
@@ -169,7 +167,6 @@ public class Model  implements Runnable{
 		
 		//Check X boundaries:
 		if((obj.getX()-obj.getR()/2+dx <= 0) || (obj.getX()+obj.getR()/2+dx >= this.boudary[0])){
-			System.out.println(dx);
 			dx = -dx;
 		}
 
@@ -180,6 +177,16 @@ public class Model  implements Runnable{
 		}
 		obj.updateX(dx);
 		obj.updateY(dy);
+	}
+	
+	public DynamicEntity select(int x,int y){
+		for(DynamicEntity i : this.things.values() ){
+			double d = Math.sqrt( Math.pow( x - i.getX() , 2) + Math.pow( y - i.getY() , 2) );
+			if(d <= (i.getR()/2) ){
+				return i;
+			}
+		}
+		return null;
 	}
 
 }

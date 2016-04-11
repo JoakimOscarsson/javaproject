@@ -114,12 +114,31 @@ public class Ball implements DynamicEntity {
 		this.dy = deltaY;
 	}
 	
+	public void addToDx(double deltaX){
+		this.dx += deltaX;
+	}
+	public void addToDy(double deltaY){
+		this.dy += deltaY;
+	}
 	public void update(){
 		/*
 		this.x += (int)(this.speed * Math.cos(this.theta));
 		this.y += (int)(this.speed * Math.sin(this.theta));
 		*/
 	}
+
+
+	@Override
+	public Color getColor() {
+		return this.color;
+	}
+
+
+	@Override
+	public void setColor(Color newColor) {
+		this.color = newColor;
+	}
+	
 	
 	
 }
